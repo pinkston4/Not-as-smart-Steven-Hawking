@@ -7,6 +7,12 @@ from commands import Commander
 running = True
 
 def play_audio(filename):
+    """
+    play_audio is a method that takes one argument, filename.
+    play_audio plays the wav files that you hear at the start and end of the app
+    argument:
+        filename = the path to/ name of a WAVE file you wish to play
+    """
     chunk = 1024
     wf = wave.open(filename, 'rb')
     pa = pyaudio.PyAudio()
@@ -27,23 +33,31 @@ r = sr.Recognizer()
 cmmd = Commander()
 
 def initSpeech():
-    print('Listening...')
-    with sr.Microphone() as source:
-        audio = r.listen(source)
-    # play_audio('./audio/sentnc16.wav')
-    command = ""
-    try:
-        command = r.recognize_google(audio)
-    except:
-        print('I could not understand you')
-    print('Your command:')
-    print(command)
-    if command in ['quit', 'exit', 'exits' 'bye', 'by' 'good-by', 'goodbye']:
-        global running
-        running = False
-        
-    cmmd.discover(command)
+    """
+    initSpeech contains the while loop that is this application
+    it takes no arguments
+    initSpeech listens for user and commands and quits if that is the command,
+    returns to top of while loop if command not recognized, otherwise it passes
+    the command off to discover
+    """
+    program = True
+    while program == True:
+        print('Listening...')
+        with sr.Microphone() as source:
+            audio = r.listen(source)
+        command = ""
+
+        try:
+            command = r.recognize_google(audio)
+        except:
+            continue
+
+        if command in ['quit', 'exit', 'exits', 'exxat', 'bye', 'by' 'good-by', 'goodbye']:
+            program = False
+            play_audio('./audio/sentnc16.wav')
+            break
+
+        cmmd.discover(command)
 
 play_audio('./audio/sentnc10.wav')
-while running == True:
-    initSpeech()
+initSpeech()
