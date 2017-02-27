@@ -6,7 +6,9 @@ from answer import Fetcher
 
 class Commander:
     """
-    The Commander class determains what the user wants it to do. It will tell its name, tell you its purpose, look up information for you, and launch/open apps for you
+    The Commander class determains what the user wants it to do. It will tell
+    its name, tell you its purpose, look up information for you, and launch/open
+    apps for you
     methods:
         __init__()
         respond()
@@ -21,7 +23,8 @@ class Commander:
 
     def respond(self, response):
         """
-        the respond method takes one argument. The respond method runs a subprocess that will output audio
+        the respond method takes one argument. The respond method runs a subprocess
+        that will output audio
         arguments:
             responce = the text you want read out loud
         """
@@ -30,7 +33,9 @@ class Commander:
     def discover(self, text):
         """
         the discover method takes one argument. The discover method determines
-        what happens next with a user command. Wether it be responding with info about itself, running the command as a subprocess, searching google for an answer to user command, or returning if answer is unintelligable
+        what happens next with a user command. Wether it be responding with
+        info about itself, running the command as a subprocess, searching google
+        for an answer to user command, or returning if answer is unintelligable
         argument:
             text = user spoken command
         """
