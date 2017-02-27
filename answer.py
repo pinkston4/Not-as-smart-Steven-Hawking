@@ -13,6 +13,9 @@ class Fetcher:
     """
     The Fetcher class is the web scraper/parser
     Fetcher searches google and looks for the google supplied answer
+    Fether uses PhantomJS as a headless browser which it then uses to look up
+    what the user wants in google and then return the page. Which is then parsed
+    with BeautifulSoup.
     methods:
         __init__()
         lookup()
@@ -30,7 +33,14 @@ class Fetcher:
         soup = BeautifulSoup(self.driver.page_source, 'html.parser')
 
         if soup.find_all(class_='_sPg') == []:
-            return
+            if soup.find_all(class_='_m3b') != []:
+                answer = soup.find_all(class_='_m3b')[0]
+                result_beta = str(answer.get_text())
+                result = result_beta.replace('(', '').replace(')', '')
+                self.driver.quit()
+                return result
+            else:
+                return
         else:
             answer = soup.find_all(class_='_sPg')[0]
             result_beta = str(answer.get_text())
