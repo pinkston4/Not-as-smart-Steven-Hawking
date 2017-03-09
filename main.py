@@ -1,10 +1,8 @@
 import pyaudio
 import wave
 import speech_recognition as sr
-import subprocess
 from commands import Commander
 
-running = True
 
 def play_audio(filename):
     """
@@ -32,7 +30,8 @@ def play_audio(filename):
 r = sr.Recognizer()
 cmmd = Commander()
 
-def initSpeech():
+
+def init_speech():
     """
     initSpeech contains the while loop that is this application
     it takes no arguments
@@ -41,14 +40,14 @@ def initSpeech():
     the command off to discover
     """
     program = True
-    while program == True:
+    while program is True:
         print('Listening...')
         with sr.Microphone() as source:
             audio = r.listen(source)
-        command = ""
 
         try:
             command = r.recognize_google(audio)
+            print(command)
         except:
             continue
 
@@ -60,4 +59,4 @@ def initSpeech():
         cmmd.discover(command)
 
 play_audio('./audio/sentnc10.wav')
-initSpeech()
+init_speech()
