@@ -1,6 +1,6 @@
 # Not so smart Steven Hawking
 
-Voice controlled controller for linux machines (Debian/Ubuntu). Ask it its name. Ask it its purpose and what it can do for you. Then instead of typing commands or navigating the UI just tell Not so smart Steven Hawking what to do.
+A command line application built that listens to what the user says and executes a task or searches the internet for answers based on what the user said. If the user says "open" or "launch" followed by an application name it will launch the application. If the user asks a question it will search google, scrape it for an answer then read it back. 
 
 ## Dependencies
 1. Make sure you have Python 3.6
